@@ -173,7 +173,9 @@ GraphQL can aggregate multiple REST requests into one query. GraphQL server orga
   <img src="images/grpc.jpg">
 </p>
 
-gRPC (Google Remote Procedure Call) is a framework for remote communication between distributed systems. It operates like a high-performance RPC system and follows these key steps:
+RPC (Remote Procedure Call) is called “**remote**” because it enables communications between remote services when services are deployed to different servers under microservice architecture. From the user’s point of view, it acts like a local function call.
+
+The diagram below illustrates the overall data flow for **gRPC**.
 
    - Client Request: The client initiates an RPC request. Unlike traditional REST, gRPC often uses a binary format, which is more efficient than JSON.
 
