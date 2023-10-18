@@ -173,21 +173,19 @@ GraphQL can aggregate multiple REST requests into one query. GraphQL server orga
   <img src="images/grpc.jpg">
 </p>
 
-RPC (Remote Procedure Call) is called “**remote**” because it enables communications between remote services when services are deployed to different servers under microservice architecture. From the user’s point of view, it acts like a local function call.
+gRPC (Google Remote Procedure Call) is a framework for remote communication between distributed systems. It operates like a high-performance RPC system and follows these key steps:
 
-The diagram below illustrates the overall data flow for **gRPC**.
+   - Client Request: The client initiates an RPC request. Unlike traditional REST, gRPC often uses a binary format, which is more efficient than JSON.
 
-Step 1: A REST call is made from the client. The request body is usually in JSON format.
+   - Client to Server: The client application (gRPC client) transforms the request into an RPC call. It encodes this as a binary client stub.
 
-Steps 2 - 4: The order service (gRPC client) receives the REST call, transforms it, and makes an RPC call to the payment service. gPRC encodes the **client stub** into a binary format and sends it to the low-level transport layer.
+   - Network Transport: The encoded data is sent over the network using HTTP2, leveraging its features like multiplexing and binary framing.
 
-Step 5: gRPC sends the packets over the network via HTTP2. Because of binary encoding and network optimizations, gRPC is said to be 5X faster than JSON.
+   - Server Reception: On the server side, the target service (gRPC server) decodes the binary data and invokes the specified server application logic.
 
-Steps 6 - 8: The payment service (gRPC server) receives the packets from the network, decodes them, and invokes the server application.
+   - Server Response: The server application processes the request, generates a response, encodes it in binary, and sends it back to the client via the transport layer.
 
-Steps 9 - 11: The result is returned from the server application, and gets encoded and sent to the transport layer.
-
-Steps 12 - 14: The order service receives the packets, decodes them, and sends the result to the client application.
+   - Client Response: The client (gRPC client) decodes the response and presents the result to the client application as if it were a local function call.
 
 ### What is a webhook?
 
